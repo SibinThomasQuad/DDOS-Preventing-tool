@@ -1,0 +1,3 @@
+def banner():
+    banner = open("banner.dat", "r")
+    return banner.read()

@@ -1,7 +1,14 @@
 import os
+import banner
+import automate
 os.system("clear")
-banner = open("banner.dat", "r")
-print(banner.read())
+print(banner.show())
+def set_limit():
+    limit=input("Please enter Connection Limit:")
+    command="echo "+limit+" > maximum_connections.dat"
+    os.system(command)
+    print("[+] Connetion Limit Added")
+    main()
 def un_block():
     ip_address=input("Enter IP Address That you want to block:")
     command="iptables -D INPUT -s "+ip_address+" -j DROP"
@@ -47,6 +54,8 @@ def main():
     print("[2] Block IP Address")
     print("[3] List Blocked IP Address")
     print("[4] UnBlock IP Address")
+    print("[5] Auto ditect DDOS and Block IP Automaticaly")
+    print("[6] Set Connection Limit")
     print("[0] Exit")
 
     option = input("Select Option:")
@@ -58,6 +67,10 @@ def main():
         list_banned()
     if(int(option) == 4):
         un_block()
+    if(int(option) == 5):
+        automate.automate_task()
+    if(int(option) == 6):
+        set_limit()
     if(int(option) == 0):
         print("Exiting...")
         quit()
